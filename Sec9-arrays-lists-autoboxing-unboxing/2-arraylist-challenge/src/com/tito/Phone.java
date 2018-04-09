@@ -27,21 +27,25 @@ public class Phone {
     if (foundPosition < 0) {
       System.out.println(oldContact.getName() + " was not found");
       return false;
+    } else if (findContact(newContact.getName()) != -1) {
+        System.out.println("contact with name " + newContact.getName() + " already exists --> update unsuccessful");
+        return false;
     }
 
     this.myContacts.set(foundPosition, newContact);
     System.out.println(oldContact.getName() + " was replaced with " + newContact.getName());
+    System.out.println(oldContact.getPhoneNumber() + " was replaced with " + newContact.getPhoneNumber());
     return true;
   }
 
   public boolean removeContact(Contacts contact) {
     int foundPosition = findContact(contact);
     if (foundPosition < 0) {
-      System.out.println(contact.getName() + ", was not found");
+      System.out.println(contact.getName() + " was not found");
       return false;
     }
     this.myContacts.remove(foundPosition);
-    System.out.println(contact.getName() + ", was deleted");
+    System.out.println(contact.getName() + " was deleted");
     return true;
   }
 
@@ -71,6 +75,8 @@ public class Phone {
     if (position >= 0) {
       return this.myContacts.get(position);
     }
+
+    return null;
   }
 
   public void printContacts() {
