@@ -1,0 +1,99 @@
+package com.tito;
+
+import java.util.Scanner;
+
+public class Main {
+  private static Scanner scanner = new Scanner(System.in);
+  private static Branch newBranch = new Branch("First Bank", "Branch 1", "Denver, CO");
+  private static Bank myBank = new Bank("First Bank", "USA");
+
+  public static void main(String[] args) {
+    // CHALLENGE:
+    // You job is to create a simple banking application.
+    // There should be a Bank class
+    // It should have an arraylist of Branches
+    // Each Branch should have an arraylist of Customers
+    // The Customer class should have an arraylist of Doubles (transactions)
+    // Customer:
+    // Name, and the ArrayList of doubles.
+    // Branch:
+    // Need to be able to add a new customer and initial transaction amount.
+    // Also needs to add additional transactions for that customer/branch
+    // Bank:
+    // Add a new branch
+    // Add a customer to that branch with initial transaction
+    // Add a transaction for an existing customer for that branch
+    // Show a list of customers for a particular branch and optionally a list
+    // of their transactions
+    // Demonstration of autoboxing and unboxing in your code
+    // Hint: Transactions
+    // Add data validation.
+    // e.g. check for existence, etc.
+    // Think about where you are adding the code to perform certain actions
+
+    boolean quit = false;
+    startTerminal();
+    printActions();
+    while (!quit) {
+      System.out.println("enter action (6 shows available actions):");
+      int action = scanner.nextInt();
+      scanner.nextLine();
+
+      switch (action) {
+        case 0:
+          System.out.println("\nshutting down...");
+          quit = true;
+          break;
+        case 1:
+          addNewBranch();
+          break;
+        case 2:
+          System.out.println("branches: \n" + myBank.getBranches());
+          break;
+        case 3:
+//          addNewCustomer();
+          break;
+        case 4:
+//          addTransaction();
+          break;
+        case 5:
+//          queryContact();
+          break;
+        case 6:
+          printActions();
+          break;
+      }
+    }
+  }
+
+  public static void startTerminal() {
+    System.out.println("welcome to the banking terminal");
+  }
+
+  public static void printActions() {
+    System.out.println("\navailable actions:\npress");
+    System.out.println("\t 0 - to exit");
+    System.out.println("\t 1 - to add a new branch");
+    System.out.println("\t 2 - to print a list of branches");
+    System.out.println("\t 3 - to add a new customer");
+    System.out.println("\t 4 - to add transactions to an existing customer");
+    System.out.println("\t 5 - to print a list of customers");
+    System.out.println("\t 6 - print list of available actions");
+    System.out.println("choose your action");
+  }
+
+  private static void addNewBranch() {
+    System.out.println("enter head bank of new branch: ");
+    String headBank = scanner.nextLine();
+    System.out.println("enter branch name: ");
+    String branchName = scanner.nextLine();
+    System.out.println("enter branch location: ");
+    String branchLocation = scanner.nextLine();
+    Branch newBranch = Branch.createBranch(headBank, branchName, branchLocation);
+    if (myBank.addBranch(newBranch)) {
+      System.out.println("new branch added: name - " + branchName + ", location - " + branchLocation);
+    } else {
+      System.out.println("cannot add: " + branchName + " is already on file ");
+    }
+  }
+}
