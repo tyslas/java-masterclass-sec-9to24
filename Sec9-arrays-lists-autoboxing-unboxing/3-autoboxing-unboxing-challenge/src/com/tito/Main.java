@@ -51,13 +51,13 @@ public class Main {
           myBank.printBranches();
           break;
         case 3:
-//          addNewCustomer();
+          addNewCustomer();
           break;
         case 4:
 //          addTransaction();
           break;
         case 5:
-//          queryContact();
+          myBank.printCustomers();
           break;
         case 6:
           printActions();
@@ -94,6 +94,19 @@ public class Main {
       System.out.println("new branch added: name - " + branchName + ", location - " + branchLocation);
     } else {
       System.out.println("cannot add: " + branchName + " is already on file ");
+    }
+  }
+
+  private static void addNewCustomer() {
+    System.out.println("enter name: ");
+    String newName = scanner.nextLine();
+    System.out.println("enter initial deposit: ");
+    double initTransaction = Double.parseDouble(scanner.nextLine());
+    Customer newCustomer = Customer.createCustomer(newName, initTransaction);
+    if (myBank.addCustomer(newCustomer)) {
+      System.out.println("new customer added: name - " + newName + ", initial deposit - " + initTransaction);
+    } else {
+      System.out.println("error: " + newName + " is already on file, cannot add duplicate");
     }
   }
 

@@ -13,12 +13,16 @@ public class Transaction {
     this.dateAndTime = this.getCurrDateAndTime();
   }
 
-  public String getCurrDateAndTime() {
+  private String getCurrDateAndTime() {
     DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
     Date dateObj = new Date();
     String currDateAndTime = df.format(dateObj);
     System.out.println(currDateAndTime);
     return currDateAndTime;
+  }
+
+  public Transaction createTransaction(double initialTransaction) {
+    return new Transaction(initialTransaction);
   }
 
   public double getTransactionAMT() {
