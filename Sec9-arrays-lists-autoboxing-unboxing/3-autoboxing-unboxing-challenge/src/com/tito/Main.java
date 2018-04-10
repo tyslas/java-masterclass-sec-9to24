@@ -48,7 +48,7 @@ public class Main {
           addNewBranch();
           break;
         case 2:
-          System.out.println("branches: \n" + myBank.getBranches());
+          myBank.printBranches();
           break;
         case 3:
 //          addNewCustomer();

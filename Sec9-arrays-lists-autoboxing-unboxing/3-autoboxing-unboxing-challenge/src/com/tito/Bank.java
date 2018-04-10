@@ -35,7 +35,12 @@ public class Bank {
     return -1;
   }
 
-  public void 
+  public void printBranches() {
+    System.out.println("list of branches:");
+    for (int i = 0; i < this.branches.size(); i++) {
+      System.out.println((i + 1) + ". name: " + this.branches.get(i).getBranchName() + " - location: " + this.branches.get(i).getBranchLocation());
+    }
+  }
 
   public String getBankName() {
     return bankName;
