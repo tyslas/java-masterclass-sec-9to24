@@ -12,13 +12,13 @@ public class Phone {
     this.myContacts = new ArrayList<Contacts>();
   }
 
-  public boolean addContact(Contacts contacts) {
-    if (findContact(contacts.getName()) >= 0) {
+  public boolean addContact(Contacts contact) {
+    if (findContact(contact.getName()) >= 0) {
       System.out.println("contact is already on file");
       return false;
     }
 
-    myContacts.add(contacts);
+    myContacts.add(contact);
     return true;
   }
 
