@@ -27,7 +27,7 @@ public class Main {
     ArrayList<String> stringArrList = new ArrayList<String>();
     stringArrList.add("Allen");
 
-//    ArrayList<int> intArrList = new ArrayList<int>(); // primitive types will cannot be used -> datatype must be a 'class' so that it can be passed as an object
+//    ArrayList<int> intArrList = new ArrayList<int>(); // primitive types cannot be used -> datatype must be a 'class' so that it can be passed as an object
     ArrayList<IntClass> intClassArrList = new ArrayList<IntClass>();
     intClassArrList.add(new IntClass(54));
 
