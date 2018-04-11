@@ -53,7 +53,7 @@ public class Main {
     if (!bank.addCustomer("Melbourne", "Brian", 5.53)) {
       System.out.println("error: Melbourne branch does not exist");
     }
-    
+
     if (!bank.addBranch("US Bank", "Denver", "DU")) {
       System.out.println("Denver branch already exists");
     }
