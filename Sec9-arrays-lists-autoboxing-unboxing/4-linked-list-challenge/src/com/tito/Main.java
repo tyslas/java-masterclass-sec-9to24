@@ -41,21 +41,21 @@ public class Main {
     album1.addSongToAlbum(song3);
     album1.addSongToAlbum(song4);
     album1.addSongToAlbum(song5);
-    printAlbum(album1);
-    System.out.println("===============================");
+//    printAlbum(album1);
+//    System.out.println("===============================");
     Album album2 = new Album("the black album");
     album2.addSongToAlbum(song6);
     album2.addSongToAlbum(song7);
     album2.addSongToAlbum(song8);
     album2.addSongToAlbum(song9);
     album2.addSongToAlbum(song10);
-    printAlbum(album2);
-    System.out.println("===============================");
+//    printAlbum(album2);
+//    System.out.println("===============================");
     Collection collection = new Collection("the collection");
     collection.addAlbumToCollection(album1);
     collection.addAlbumToCollection(album2);
-    printCollection(collection);
-    System.out.println("===============================");
+//    printCollection(collection);
+//    System.out.println("===============================");
     Playlist playlist = new Playlist("the gray playlist");
     playlist.addSongToPlaylist(song2);
     playlist.addSongToPlaylist(song9);
@@ -65,7 +65,9 @@ public class Main {
     playlist.addSongToPlaylist(song10);
     playlist.addSongToPlaylist(song3);
     playlist.addSongToPlaylist(song8);
-    printPlaylist(playlist);
+//    printPlaylist(playlist);
+
+    musicPlayer(playlist);
   }
 
   private static void musicPlayer(Playlist title) {
@@ -102,8 +104,42 @@ public class Main {
             goingForward = false;
           }
           break;
+        case 2:
+          if (goingForward) {
+            if (listIterator.hasPrevious()) {
+              listIterator.previous();
+            }
+            goingForward = false;
+          }
+          if (listIterator.hasPrevious()) {
+            System.out.println("now playing " + listIterator.previous());
+          } else {
+            System.out.println("error: listening to the first song in the playlist");
+            goingForward = true;
+          }
+          break;
+        case 3:
+          if (listIterator.hasPrevious()) {
+            System.out.println("(replay) now playing " + listIterator.previous());
+          } else {
+            System.out.println("error: listening to the first song in the playlist");
+            goingForward = true;
+          }
+          break;
+        case 4:
+          printMenu();
+          break;
       }
     }
+  }
+
+  private static void printMenu() {
+    System.out.println("available actions: \npress ");
+    System.out.println("0 - to quit\n" +
+        "1 - play next track\n" +
+        "2 - play previous track\n" +
+        "3 - replay current track\n" +
+        "4 - print menu options");
   }
 
   private static void printAlbum(Album title) {
