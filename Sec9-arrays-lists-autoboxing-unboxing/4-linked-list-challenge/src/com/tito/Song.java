@@ -22,4 +22,9 @@ public class Song {
   public int getDurationInSeconds() {
     return durationInSeconds;
   }
+
+  @Override
+  public String toString() {
+    return this.title + ": " + this.durationInSeconds + " seconds";
+  }
 }
