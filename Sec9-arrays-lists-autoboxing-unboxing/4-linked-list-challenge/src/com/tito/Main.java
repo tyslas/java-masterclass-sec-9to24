@@ -122,9 +122,23 @@ public class Main {
           }
           break;
         case 3:
-          if (listIterator.hasPrevious() && goingForward) {
-            // TODO - figure out how to properly replay songs
-            // TODO - fix bounding error for replaying first and last songs in playlist
+          if (goingForward) {
+            if (listIterator.hasPrevious()) {
+              System.out.println("(replay) now playing " + listIterator.previous().toString());
+              goingForward = false;
+            } else {
+              System.out.println("error: listening to the first track in the playlist");
+            }
+          } else {
+            if (listIterator.hasNext()) {
+              System.out.println("(replay) now playing " + listIterator.previous().toString());
+              goingForward = true;
+            } else {
+              System.out.println("error: listening to the final track in the playlist");
+            }
+          }
+          /*if (listIterator.hasPrevious() && goingForward) {
+            // TODO: fix bounding error when replaying final song after the user tries to navigate beyond the final song
             System.out.println("(replay) now playing " + listIterator.previous().toString());
             goingForward = false;
           } else if (!listIterator.hasPrevious() && !goingForward) {
@@ -147,9 +161,6 @@ public class Main {
             goingForward = false;
           } else if (listIterator.hasNext() && !goingForward) {
             System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = true;
-          }/* else {
-            System.out.println("error: listening to the first song in the playlist");
             goingForward = true;
           }*/
           break;
