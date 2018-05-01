@@ -75,7 +75,7 @@ public class Main {
     boolean quit = false;
     boolean goingForward = true;
     LinkedList<Song> tracks = title.getSongs();
-    System.out.println("tracks: " + tracks.toString());
+//    System.out.println("tracks: " + tracks.toString());
     ListIterator<Song> listIterator = tracks.listIterator();
 //    System.out.println("listIterator: " + listIterator.toString());
 
@@ -87,6 +87,7 @@ public class Main {
     }
     while (!quit) {
       int action = scanner.nextInt();
+      scanner.nextLine();
       switch (action) {
         case 0:
           System.out.println("exiting music player...");
@@ -131,7 +132,7 @@ public class Main {
             goingForward = true;
           } else if (!listIterator.hasPrevious() && goingForward) {
             System.out.println("(replay) now playing " + listIterator.next().toString());
-            goingForward = true;
+            goingForward = false;
           } else if (listIterator.hasPrevious() && !goingForward) {
             System.out.println("(replay) now playing " + listIterator.next().toString());
             goingForward = true;
@@ -140,19 +141,22 @@ public class Main {
             goingForward = false;
           } else if (!listIterator.hasNext() && !goingForward) {
             System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = false;
+            goingForward = true;
           } else if (!listIterator.hasNext() && goingForward) {
             System.out.println("(replay) now playing " + listIterator.previous().toString());
             goingForward = false;
           } else if (listIterator.hasNext() && !goingForward) {
             System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = false;
+            goingForward = true;
           }/* else {
             System.out.println("error: listening to the first song in the playlist");
             goingForward = true;
           }*/
           break;
         case 4:
+          printPlaylist(title);
+          break;
+        case 5:
           printMenu();
           break;
       }
@@ -165,7 +169,8 @@ public class Main {
         "1 - play next track\n" +
         "2 - play previous track\n" +
         "3 - replay current track\n" +
-        "4 - print menu options");
+        "4 - list tracks in playlist\n" +
+        "5 - print menu options");
   }
 
   private static void printAlbum(Album title) {
