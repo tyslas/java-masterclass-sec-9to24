@@ -123,21 +123,34 @@ public class Main {
         case 3:
           if (listIterator.hasPrevious() && goingForward) {
             // TODO - figure out how to properly replay songs
+            // TODO - fix bounding error for replaying first and last songs in playlist
             System.out.println("(replay) now playing " + listIterator.previous().toString());
             goingForward = false;
           } else if (!listIterator.hasPrevious() && !goingForward) {
             System.out.println("(replay) now playing " + listIterator.next().toString());
             goingForward = true;
-          } else if (!listIterator.hasNext() && !goingForward) {
+          } else if (!listIterator.hasPrevious() && goingForward) {
+            System.out.println("(replay) now playing " + listIterator.next().toString());
+            goingForward = true;
+          } else if (listIterator.hasPrevious() && !goingForward) {
             System.out.println("(replay) now playing " + listIterator.next().toString());
             goingForward = true;
           } else if (listIterator.hasNext() && goingForward) {
             System.out.println("(replay) now playing " + listIterator.previous().toString());
             goingForward = false;
-          } else {
+          } else if (!listIterator.hasNext() && !goingForward) {
+            System.out.println("(replay) now playing " + listIterator.previous().toString());
+            goingForward = false;
+          } else if (!listIterator.hasNext() && goingForward) {
+            System.out.println("(replay) now playing " + listIterator.previous().toString());
+            goingForward = false;
+          } else if (listIterator.hasNext() && !goingForward) {
+            System.out.println("(replay) now playing " + listIterator.previous().toString());
+            goingForward = false;
+          }/* else {
             System.out.println("error: listening to the first song in the playlist");
             goingForward = true;
-          }
+          }*/
           break;
         case 4:
           printMenu();
