@@ -137,38 +137,28 @@ public class Main {
               System.out.println("error: listening to the final track in the playlist");
             }
           }
-          /*if (listIterator.hasPrevious() && goingForward) {
-            // TODO: fix bounding error when replaying final song after the user tries to navigate beyond the final song
-            System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = false;
-          } else if (!listIterator.hasPrevious() && !goingForward) {
-            System.out.println("(replay) now playing " + listIterator.next().toString());
-            goingForward = true;
-          } else if (!listIterator.hasPrevious() && goingForward) {
-            System.out.println("(replay) now playing " + listIterator.next().toString());
-            goingForward = false;
-          } else if (listIterator.hasPrevious() && !goingForward) {
-            System.out.println("(replay) now playing " + listIterator.next().toString());
-            goingForward = true;
-          } else if (listIterator.hasNext() && goingForward) {
-            System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = false;
-          } else if (!listIterator.hasNext() && !goingForward) {
-            System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = true;
-          } else if (!listIterator.hasNext() && goingForward) {
-            System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = false;
-          } else if (listIterator.hasNext() && !goingForward) {
-            System.out.println("(replay) now playing " + listIterator.previous().toString());
-            goingForward = true;
-          }*/
           break;
         case 4:
           printPlaylist(title);
           break;
         case 5:
           printMenu();
+          break;
+        case 6:
+          if (tracks.size() > 0) {
+            listIterator.remove();
+            if (listIterator.hasNext()) {
+              System.out.println("now playing " + listIterator.next().toString());
+              listIterator.next();
+            } else if (listIterator.hasPrevious()){
+              System.out.println("now playing " + listIterator.previous().toString());
+              listIterator.previous();
+            } else {
+              System.out.println("playlist is empty");
+              System.out.println("exiting music player...");
+              quit = true;
+            }
+          }
           break;
       }
     }
@@ -181,7 +171,8 @@ public class Main {
         "2 - play previous track\n" +
         "3 - replay current track\n" +
         "4 - list tracks in playlist\n" +
-        "5 - print menu options");
+        "5 - print menu options\n" +
+        "6 - remove current track from the playlist\n");
   }
 
   private static void printAlbum(Album title) {
