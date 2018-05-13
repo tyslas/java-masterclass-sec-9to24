@@ -1,0 +1,4 @@
+## put in all subdirectories
+# .idea/**/workspace.xml
+# idea/**/tasks.xml
+# .idea/dictionaries
